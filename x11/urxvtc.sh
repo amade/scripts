@@ -24,9 +24,9 @@ case $b in
 4) b="ff";;
 esac
 
-urxvtc "$@" -tint "#$r$g$b"
+urxvtc -tint "#$r$g$b" "$@"
 
 if [ $? -eq 2 ]; then
 	urxvtd -q -o -f
-	urxvtc "$@" -tint "#$r$g$b"
+	urxvtc -tint "#$r$g$b" "$@"
 fi
