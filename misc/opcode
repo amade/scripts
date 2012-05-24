@@ -1,0 +1,5 @@
+if [ -e /tmp/temp.asm ]; then
+	rm /tmp/temp.asm
+fi
+echo $1 >> /tmp/temp.asm && nasm /tmp/temp.asm -o /tmp/temp.bin && rm /tmp/temp.asm
+od -N 16 -t x1 /tmp/temp.bin && rm /tmp/temp.bin
