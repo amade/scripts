@@ -24,6 +24,18 @@ case $1 in
 		fi
 		;;
 #====================
+	cstrike)
+		pkill xcompmgr
+		restorexcompmgr=$?
+
+		cd "${WINEPATH}/CS Source"
+		wine cstrike.exe
+
+		if [ $restorexcompmgr -eq 0 ]; then
+			xcompmgr &
+		fi
+		;;
+#====================
 	ekg2)
 		wmctrl -s 0
 		pgrep ekg2
