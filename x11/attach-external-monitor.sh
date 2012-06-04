@@ -13,10 +13,12 @@ xrandr --auto
 xrandr --output LVDS-1 --${1}-of VGA-1
 xrandr --output VGA-1 --size ${2}
 
-# set background
-nitrogen --restore
-
 pgrep fluxbox
 if [ $? -eq 0 ]; then
 	fluxbox-remote restart
+fi
+
+pid=`pgrep wmaker`
+if [ $? -eq 0 ]; then
+	kill -s SIGUSR1 $pid
 fi
