@@ -18,7 +18,9 @@ if [ $? -eq 0 ]; then
 	fluxbox-remote restart
 fi
 
-pid=`pgrep wmaker`
+# send signal to wmaker --for-real
+pids=`pgrep wmaker`
 if [ $? -eq 0 ]; then
+	pid=`echo $pids | tail -1`
 	kill -s SIGUSR1 $pid
 fi
