@@ -21,8 +21,6 @@ fi
 # send signal to wmaker --for-real
 pids=`pgrep wmaker`
 if [ $? -eq 0 ]; then
-	pid=`echo $pids | tail -1`
-	# seems like we need to wait a bit
-	sleep 3
-	kill -s SIGUSR1 $pid
+	pid=`echo $pids | awk '{ print $2 }'`
+	kill -usr1 $pid
 fi
