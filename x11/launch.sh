@@ -10,30 +10,26 @@ else
 	WINEPATH="${HOME}/.wine/drive_c/Program Files"
 fi
 
+function launch_wine {
+	pkill xcompmgr
+	restorexcompmgr=$?
+
+	cd "$1"
+	wine "$2"
+
+	if [ $restorexcompmgr -eq 0 ]; then
+		xcompmgr &
+	fi
+}
+
 case $1 in
 #====================
 	cs)
-		pkill xcompmgr
-		restorexcompmgr=$?
-
-		cd "${WINEPATH}/Counter-Strike 1.6"
-		wine cstrike.exe
-
-		if [ $restorexcompmgr -eq 0 ]; then
-			xcompmgr &
-		fi
+		launch_wine "${WINEPATH}/Counter-Strike 1.6" cstrike.exe
 		;;
 #====================
 	cstrike)
-		pkill xcompmgr
-		restorexcompmgr=$?
-
-		cd "${WINEPATH}/CS Source"
-		wine cstrike.exe
-
-		if [ $restorexcompmgr -eq 0 ]; then
-			xcompmgr &
-		fi
+		launch_wine "${WINEPATH}/CS Source" cstrike.exe
 		;;
 #====================
 	ekg2)
@@ -55,56 +51,23 @@ case $1 in
 		;;
 #====================
 	gridwars)
-		pkill xcompmgr
-		restorexcompmgr=$?
-
-		cd "${WINEPATH}/GridWars54"
-		wine GridWars.exe
-
-		if [ $restorexcompmgr -eq 0 ]; then
-			xcompmgr &
-		fi
-		;;
-#====================
-	starcraft)
-		pkill xcompmgr
-		restorexcompmgr=$?
-
-		cd "${WINEPATH}/Starcraft"
-		wine StarCraft.exe
-
-		if [ $restorexcompmgr -eq 0 ]; then
-			xcompmgr &
-		fi
-		;;
-#====================
-	torchlight)
-		pkill xcompmgr
-		restorexcompmgr=$?
-
-		cd "${WINEPATH}/Torchlight"
-		wine Torchlight.exe
-
-		if [ $restorexcompmgr -eq 0 ]; then
-			xcompmgr &
-		fi
-		;;
-#====================
-	wow)
-		pkill xcompmgr
-		restorexcompmgr=$?
-
-		cd "${WINEPATH}/World of Warcraft"
-		wine WoW.exe
-
-		if [ $restorexcompmgr -eq 0 ]; then
-			xcompmgr &
-		fi
+		launch_wine "${WINEPATH}/GridWars54" GridWars.exe
 		;;
 #====================
 	heroes)
-		cd "${WINEPATH}/Heroes of Might and Magic III"
-		wine Heroes3.exe
+		launch_wine "${WINEPATH}/Heroes of Might and Magic III" Heroes3.exe
+		;;
+#====================
+	starcraft)
+		launch_wine "${WINEPATH}/Starcraft" StarCraft.exe
+		;;
+#====================
+	torchlight)
+		launch_wine "${WINEPATH}/Torchlight" Torchlight.exe
+		;;
+#====================
+	wow)
+		launch_wine "${WINEPATH}/World of Warcraft" WoW.exe
 		;;
 #====================
 	*)
