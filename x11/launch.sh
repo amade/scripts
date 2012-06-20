@@ -67,7 +67,7 @@ case $1 in
 		;;
 #====================
 	win7)
-		SDL_VIDEO_X11_WMCLASS="qemu-win7" qemu-kvm -name "win7" -hda VMs/Windows\ 7.img -net nic,macaddr=00:de:ad:fa:ce:00 -net tap,ifname=tap0,script=no,downscript=no -m 1024 -smp 4 -usbdevice tablet
+		SDL_VIDEO_X11_WMCLASS="qemu-win7" qemu-kvm -name "win7" -hda VMs/Windows\ 7.img -net nic,macaddr=00:de:ad:fa:ce:00 -net tap,ifname=tap0,script=no,downscript=no -m 2048 -smp 4 -usbdevice tablet
 		;;
 #====================
 	wow)
