@@ -2,7 +2,6 @@
 
 
 files=(	\
-	/usr/bin/blender-bin-2.60
 	/usr/bin/kwin \
 	/usr/bin/mplayer \
 	/usr/bin/mplayer2 \
