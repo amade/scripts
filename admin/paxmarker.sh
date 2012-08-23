@@ -9,7 +9,6 @@ files=(	\
 	/usr/bin/vlc \
 	/usr/games/bin/xonotic-glx \
 	/usr/lib64/kde4/libexec/kwin_opengl_test \
-	/usr/lib64/virtualbox/VBoxSVC \
 	/usr/lib64/virtualbox/VBoxTestOGL \
 	/usr/libexec/gnome-session-check-accelerated-helper
 	)
