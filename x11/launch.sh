@@ -11,14 +11,15 @@ else
 fi
 
 function launch_wine {
-	pkill xcompmgr
-	restorexcompmgr=$?
+	COMPOSITOR=compton
+	pkill ${COMPOSITOR}
+	restorecomp=$?
 
 	cd "$1"
 	wine "$2"
 
-	if [ $restorexcompmgr -eq 0 ]; then
-		xcompmgr &
+	if [ $restorecomp -eq 0 ]; then
+		${COMPOSITOR} &
 	fi
 }
 
