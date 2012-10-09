@@ -4,8 +4,16 @@ TOP_MARGIN=66
 BOTTOM_MARGIN=2
 LEFT_MARGIN=2
 RIGHT_MARGIN=66
-Y_DECOR_SIZE=27
-X_DECOR_SIZE=2
+
+ACTIVE_WINDOW=$(xprop -root | grep _NET_ACTIVE_WINDOW\(WINDOW\) | awk '{print $5}')
+
+if [ $ACTIVE_WINDOW == "0x0" ]; then
+	# Do not touch root window
+	exit 0;
+fi
+
+Y_DECOR_SIZE=$(xprop -id ${ACTIVE_WINDOW} | grep _NET_FRAME_EXTENTS | awk 'BEGIN{result=0}{result += $5}{result += $6}END{print result}')
+X_DECOR_SIZE=$(xprop -id ${ACTIVE_WINDOW} | grep _NET_FRAME_EXTENTS | awk 'BEGIN{result=0}{result += $3}{result += $4}END{print result}')
 
 #DISPLAY_WIDTH=$(xrandr 2>/dev/null | grep "*" | awk '{print $1}' | awk -F "x" '{print $1}')
 #DISPLAY_HEIGHT=$(xrandr 2>/dev/null | grep "*" | awk '{print $1}' | awk -F "x" '{print $2}')
