@@ -3,7 +3,7 @@
 configfile="${HOME}/.background"
 
 usage () {
-	echo -e "\e[31mUsage: ${0} [files dir] [random|previous|next]\e[0m"
+	echo -e "\e[31mUsage: ${0} [files dir] [restore|random|previous|next]\e[0m"
 	exit 1
 }
 
@@ -26,6 +26,9 @@ main () {
 	n_files=`ls -1 "${1}" | wc -l`
 
 	case $2 in
+		"restore")
+			# do not filenum
+			;;
 		"previous")
 			filenum=$((filenum - 1))
 			if [ ${filenum} -le 0 ]; then
