@@ -22,6 +22,13 @@ nouveau)
 	done
 	;;
 nvidia)
+	echo -e "If you really want to do it type \"YES\""
+	read confirm
+	if [ "x${confirm}" == "xYES" ]; then
+		echo -e "OK"
+	else
+		echo -e "Exiting"
+	fi
 	for i in `/bin/ls -1 /usr/bin/`; do
 		ldd "/usr/bin/${i}" 2>&1 >&- | grep "error while loading shared libraries: libGL.so.1" > /dev/null
 		if [ ${?} == 0 ]; then
