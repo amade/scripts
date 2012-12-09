@@ -44,3 +44,12 @@ for policy in ${installed_policies[@]}; do
 	done
 	printf "%20s %b\n" "${policy}" "${status}"
 done
+
+printf "\n"
+
+dontauditstatus=( `seinfo --stats | grep Dontaudit | awk -F " " '{print $4}'` )
+if [ ${dontauditstatus} -gt 0 ]; then
+	printf "Dontaudit is \e[1;32menabled\e[0m\n"
+else
+	printf "Dontaudit is \e[1;31mdisabled\e[0m\n"
+fi
