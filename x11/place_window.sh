@@ -7,24 +7,16 @@ RIGHT_MARGIN=66
 
 ACTIVE_WINDOW=$(xprop -root | grep _NET_ACTIVE_WINDOW\(WINDOW\) | awk '{print $5}')
 
+# Do not touch root window
 if [ $ACTIVE_WINDOW == "0x0" ]; then
-	# Do not touch root window
 	exit 0;
 fi
 
 Y_DECOR_SIZE=$(xprop -id ${ACTIVE_WINDOW} | grep _NET_FRAME_EXTENTS | awk 'BEGIN{result=0}{result += $5}{result += $6}END{print result}')
 X_DECOR_SIZE=$(xprop -id ${ACTIVE_WINDOW} | grep _NET_FRAME_EXTENTS | awk 'BEGIN{result=0}{result += $3}{result += $4}END{print result}')
 
-#DISPLAY_WIDTH=$(xrandr 2>/dev/null | grep "*" | awk '{print $1}' | awk -F "x" '{print $1}')
-#DISPLAY_HEIGHT=$(xrandr 2>/dev/null | grep "*" | awk '{print $1}' | awk -F "x" '{print $2}')
-
-#Works fast enough (no noticeable lag)
-DISPLAY_WIDTH=$(xdpyinfo | grep 'dimensions:' | awk '{print $2}' | awk -F "x" '{print $1}')
-DISPLAY_HEIGHT=$(xdpyinfo | grep 'dimensions:' | awk '{print $2}' | awk -F "x" '{print $2}')
-
-#Works immediately:
-#DISPLAY_WIDTH=1366
-#DISPLAY_HEIGHT=768
+DISPLAY_WIDTH=$(xprop -root | grep _NET_DESKTOP_GEOMETRY\(CARDINAL\) | awk -F "[, ]" '{print $3}')
+DISPLAY_HEIGHT=$(xprop -root | grep _NET_DESKTOP_GEOMETRY\(CARDINAL\) | awk -F "[, ]" '{print $5}')
 
 let WORKAREA_WIDTH=${DISPLAY_WIDTH}-${LEFT_MARGIN}-${RIGHT_MARGIN}
 let WORKAREA_HEIGHT=${DISPLAY_HEIGHT}-${TOP_MARGIN}-${BOTTOM_MARGIN}
