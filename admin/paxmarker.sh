@@ -1,6 +1,7 @@
 #!/bin/bash
 
 files=(	\
+	/usr/bin/blender \
 	/usr/bin/kwin \
 	/usr/bin/mplayer \
 	/usr/bin/mplayer2 \
