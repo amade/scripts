@@ -5,7 +5,7 @@ installed_policies=( `equery d selinux-base-policy | awk '{print $1}' | grep '^s
 basepolicy=( application authlogin bootloader clock consoletype cron dmesg fstools getty hostname hotplug init iptables libraries locallogin logging lvm miscfiles modutils mount mta netutils nscd portage raid rsync selinuxutil ssh staff storage su sysadm sysnetwork udev userdomain usermanage unprivuser xdg )
 policies=$(ls /usr/portage/sec-policy | grep -v '(selinux-base|selinux-base-policy|metadata.xml)' | awk -F "-" '{print $2}')
 
-#policy=$(sestatus| grep "Loaded policy name"| awk '{print $4}')
+system_policy=$(sestatus| grep "Loaded policy name"| awk '{print $4}')
 
 echo "Loaded modules:"
 for module in ${loaded_modules[@]}; do
@@ -37,9 +37,16 @@ done
 echo "Installed policies:"
 for policy in ${installed_policies[@]}; do
 	status="\e[1;31munloaded!\e[0m"
+	if [[ $policy == "unconfined" && $system_policy == "strict" ]]; then
+		status="\e[1;32munloaded\e[0m"
+	fi
 	for module in ${loaded_modules[@]}; do
 		if [ $module == $policy ]; then
 			status="\e[1;32mloaded\e[0m"
+			if [[ $module == "unconfined" && $system_policy == "strict" ]]; then
+				status="\e[1;31mloaded!\e[0m"
+			fi
+			break
 		fi
 	done
 	printf "%20s %b\n" "${policy}" "${status}"
