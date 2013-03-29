@@ -67,8 +67,8 @@ case $1 in
 		launch_wine "${WINEPATH}/Torchlight" Torchlight.exe
 		;;
 #====================
-	win7)
-		SDL_VIDEO_X11_WMCLASS="qemu-win7" qemu-kvm -name "win7" -hda VMs/Windows\ 7.img -net nic,macaddr=00:de:ad:fa:ce:00 -net tap,ifname=tap0,script=no,downscript=no -m 2048 -smp 4 -usbdevice tablet
+	win)
+		SDL_VIDEO_X11_WMCLASS="qemu-win7" qemu-system-x86_64 -m 1024 -drive file=emu/windows.img,cache=none,if=virtio -net nic,model=virtio -net user -usbdevice tablet -smp 2 -cpu kvm64 -enable-kvm -vga std
 		;;
 #====================
 	wow)
