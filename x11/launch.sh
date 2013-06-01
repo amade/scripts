@@ -33,6 +33,10 @@ case $1 in
 		launch_wine "${WINEPATH}/CS Source" cstrike.exe
 		;;
 #====================
+	dos)
+		SDL_VIDEO_X11_WMCLASS="dosbox" dosbox
+		;;
+#====================
 	ekg2)
 		wmctrl -s 0
 		pgrep ekg2
@@ -67,8 +71,8 @@ case $1 in
 		launch_wine "${WINEPATH}/Torchlight" Torchlight.exe
 		;;
 #====================
-	win)
-		SDL_VIDEO_X11_WMCLASS="qemu-win7" qemu-system-x86_64 -m 1024 -drive file=emu/windows.img,cache=none,if=virtio -net nic,model=virtio -net user -usbdevice tablet -smp 2 -cpu kvm64 -enable-kvm -vga std
+	winxp)
+		SDL_VIDEO_X11_WMCLASS="winxp" qemu-system-x86_64 -m 1024 -drive file=emu/windows.img,cache=none,if=virtio -net nic,model=virtio -net user -usbdevice tablet -smp 2 -cpu kvm64 -enable-kvm -vga std
 		;;
 #====================
 	wow)
