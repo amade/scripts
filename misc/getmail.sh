@@ -1,4 +1,6 @@
 #!/bin/bash
 
-echo "$(date "+%H:%M") : checking mail"
-imapfilter &>/dev/null && offlineimap -o -u quiet &>/dev/null &
+while true; do
+	imapfilter &>/dev/null && offlineimap -o -u quiet &>/dev/null &
+	sleep 3600
+done
