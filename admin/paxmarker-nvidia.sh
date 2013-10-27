@@ -1,5 +1,13 @@
 #!/bin/bash
 
+eselect opengl list | grep "nvidia \*" >/dev/null
+if [ ! $? -eq 0 ]; then
+	echo -e "\033[31mNVIDIA driver is not selected\e[0m"
+	echo -e "for this script to work NVIDIA driver must be selected"
+	echo -e "please run: eselect opengl set nvidia"
+	exit 1
+fi
+
 for i in `find /usr/bin -type f -executable`; do
 	rm -rf /tmp/paxit
 	ldd $i 1>/dev/null 2>/tmp/paxit
