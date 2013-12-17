@@ -1,6 +1,7 @@
 #!/bin/bash
 
 files=(	\
+	/usr/bin/compton
         /usr/bin/blender \
         /usr/bin/kwin \
         /usr/bin/mplayer \
