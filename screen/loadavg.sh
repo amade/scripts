@@ -29,4 +29,4 @@ if [ $(( ${color15} >= ${#colors} )) -eq 1 ]; then
 else
 	color15=$(( ${color15} % 11 + 1))
 fi
-echo -en "\005{16;${colors[$color1]}}${avg1}\005{16;16} \005{16;${colors[$color5]}}${avg5}\005{16;16} \005{16;${colors[$color15]}}${avg15}\005{16;16}";
+echo -en "\005{16;${colors[$color1]}}${avg1}\005{-;-} \005{16;${colors[$color5]}}${avg5}\005{-;-} \005{16;${colors[$color15]}}${avg15}\005{-;-}";
