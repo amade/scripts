@@ -6,6 +6,7 @@ files=(	\
         /usr/bin/kwin \
         /usr/bin/mplayer \
         /usr/bin/mplayer2 \
+        /usr/bin/mpv \
         /usr/bin/systemsettings \
         /usr/bin/vlc \
         /usr/games/bin/xonotic-glx \
