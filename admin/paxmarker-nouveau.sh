@@ -2,6 +2,10 @@
 
 files=(	\
 	/usr/bin/compton
+	/usr/bin/weston \
+	/usr/bin/weston-terminal \
+	/usr/libexec/weston-desktop-shell \
+	/usr/libexec/weston-keyboard \
         /usr/bin/blender \
         /usr/bin/kwin \
         /usr/bin/mplayer \
