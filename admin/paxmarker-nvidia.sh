@@ -40,8 +40,10 @@ done
 
 
 # /usr/bin/X  needed for acceleration
+# /usr/bin/kdeinit4  it execs other stuff which needs paxmark
 files=(	\
 	/usr/bin/X
+	/usr/bin/kdeinit4
 )
 
 for i in $(seq 0 $((${#files[@]} -1))); do
