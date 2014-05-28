@@ -10,7 +10,7 @@ fi
 
 for i in `find /usr/bin -type f -executable`; do
 	rm -rf /tmp/paxit
-	ldd $i 1>/dev/null 2>/tmp/paxit
+	ldd $i 1>/tmp/paxit
 	cat /tmp/paxit | grep libGL.so.1 >/dev/null
 	if [ $? -eq 0 ]; then
 	paxctl-ng -m "$i"
@@ -20,7 +20,7 @@ done
 
 for i in `find /usr/libexec -type f -executable`; do
 	rm -rf /tmp/paxit
-	ldd $i 1>/dev/null 2>/tmp/paxit
+	ldd $i 1>/tmp/paxit
 	cat /tmp/paxit | grep libGL.so.1 >/dev/null
 	if [ $? -eq 0 ]; then
 	paxctl-ng -m "$i"
@@ -30,7 +30,7 @@ done
 
 for i in `find /usr/lib64 -type f -executable`; do
 	rm -rf /tmp/paxit
-	ldd $i 1>/dev/null 2>/tmp/paxit
+	ldd $i 1>/tmp/paxit
 	cat /tmp/paxit | grep libGL.so.1 >/dev/null
 	if [ $? -eq 0 ]; then
 	paxctl-ng -m "$i"
