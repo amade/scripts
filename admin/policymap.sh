@@ -2,7 +2,7 @@
 
 loaded_modules=( `semodule -l | awk '{ print $1 }'` )
 installed_policies=( `equery d selinux-base-policy | awk '{print $1}' | grep '^sec' | awk -F "-" '{print $3}'` )
-basepolicy=( application authlogin bootloader clock consoletype cron dmesg fstools getty hostname hotplug init iptables libraries locallogin logging lvm miscfiles modutils mount mta netutils nscd portage raid rsync selinuxutil setrans ssh staff storage su sysadm sysnetwork udev userdomain usermanage unprivuser xdg )
+basepolicy=( application authlogin bootloader clock consoletype cron dmesg fstools getty hostname hotplug init iptables libraries locallogin logging lvm miscfiles modutils mount mta netutils nscd portage raid rsync selinuxutil setrans ssh staff storage su sysadm sysnetwork tmpfiles udev userdomain usermanage unprivuser xdg )
 policies=$(ls /usr/portage/sec-policy | grep -v '(selinux-base|selinux-base-policy|metadata.xml)' | awk -F "-" '{print $2}')
 
 system_policy=$(sestatus| grep "Loaded policy name"| awk '{print $4}')
